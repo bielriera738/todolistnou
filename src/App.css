@@ -11,7 +11,7 @@ body {
 .app-container {
   width: 100%;
   max-width: 500px;
-  padding: 10px;
+  padding: 20px;
 }
  
 .todo-container {
@@ -100,52 +100,6 @@ h1 {
   transition: background-color 0.2s;
 }
  
-.task-list li.important {
-  background-color: #ff4d4d; /* fondo rojo */
-  color: white; /* texto blanco */
-  border-radius: 8px;
-  padding: 10px 15px;
-  transition: all 0.3s ease;
-}
-
-.task-list li.important:hover {
-  background-color: #e60000;
-}
-
-.task-list li.completed span {
-  text-decoration: line-through;
-  color: #ccc;
-}
-.task-form button.important-btn {
-  background-color: #ff4d4d; /* fondo rojo */
-}
-.task-list li button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: background-color 0.2s;
-}
- 
-.task-list li.important {
-  background-color: #ff4d4d; /* fondo rojo */
-  color: white; /* texto blanco */
-  border-radius: 8px;
-  padding: 10px 15px;
-  transition: all 0.3s ease;
-}
-
-.task-list li.important:hover {
-  background-color: #e60000;
-}
-
-.task-list li.completed span {
-  text-decoration: line-through;
-  color: #ccc;
-}
-.task-form button.important-btn {
-  background-color: #ff4d4d; /* fondo rojo */
+.task-list li button:hover {
+  background-color: #c82333;
 }
