@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
+import TaskList from './components/TaskList.js';
+import TaskForm from './components/TaskForm.js';
 import './App.css';
- 
+
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
- 
-  const handleAddTask = (e) => {
-    e.preventDefault();
-    if (newTask.trim() === '') return;
-    
+  const [tasks, setTasks] = useState([
+    { id: 1, text: 'Comprar pa', completed: false, dueDate: null, important: false },
+    { id: 2, text: 'Acabar informe', completed: true, dueDate: new Date().toISOString(), important: false },
+  ]);
+
+  const handleAddTask = (text, isImportant = false) => {
     const task = {
       id: Date.now(),
-      text: newTask,
+      text: text,
       completed: false,
+      dueDate: null,
+      important: isImportant, // ✅ canviat: coherent amb TaskList i CSS
     };
-    
     setTasks([...tasks, task]);
-    setNewTask('');
   };
- 
+
   const handleToggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
@@ -26,39 +27,33 @@ function App() {
       )
     );
   };
- 
+
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
- 
+
+  const handleUpdateTaskDate = (taskId, newDate) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, dueDate: newDate ? newDate.toISOString() : null } : task
+      )
+    );
+  };
+
   return (
     <div className="app-container">
       <div className="todo-container">
         <h1>La Meva Llista de Tasques</h1>
-        <form onSubmit={handleAddTask} className="task-form">
-          <input
-            type="text"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            placeholder="Afegeix una nova tasca..."
-          />
-          <button type="submit">Afegir</button>
-        </form>
-        <ul className="task-list">
-          {tasks.map((task) => (
-            <li key={task.id} className={task.completed ? 'completed' : ''}>
-              <span onClick={() => handleToggleComplete(task.id)}>
-                {task.text}
-              </span>
-              <button onClick={() => handleDeleteTask(task.id)}>Eliminar</button>
-            </li>
-          ))}
-        </ul>
+        <TaskForm onAddTask={handleAddTask} />
+        <TaskList
+          tasks={tasks}
+          onToggleComplete={handleToggleComplete}
+          onDeleteTask={handleDeleteTask}
+          onUpdateTaskDate={handleUpdateTaskDate}
+        />
       </div>
     </div>
   );
 }
- 
-export default App;
- 
 
+export default App;

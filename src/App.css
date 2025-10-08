@@ -103,3 +103,8 @@ h1 {
 .task-list li button:hover {
   background-color: #c82333;
 }
+.task-list li.important span {
+  background-color: transparent; /* 🔲 Sense fons */
+  color: #ff4d4d;               /* 🔴 Text vermell */
+  font-weight: bold;
+}
